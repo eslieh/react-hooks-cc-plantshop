@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PlantCard from './PlantCard';
 import NewPlantForm from './NewPlantForm';
-
+import Search from './Search';
 function PlantList() {
   const [plants, setPlants] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     // Fetch the plant data when the component mounts
@@ -51,11 +52,22 @@ function PlantList() {
       .catch((error) => console.error('Error deleting plant:', error));
   }
 
+  // Handle search query change
+  function handleSearch(query) {
+    setSearchQuery(query);
+  }
+
+  // Filter plants based on the search query
+  const filteredPlants = plants.filter((plant) =>
+    plant.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div>
       <NewPlantForm onAddPlant={handleAddPlant} />
+      <Search onSearch={handleSearch} />
       <ul className="cards">
-        {plants.map((plantObj) => (
+        {filteredPlants.map((plantObj) => (
           <PlantCard
             key={plantObj.id}
             id={plantObj.id}
@@ -71,5 +83,6 @@ function PlantList() {
     </div>
   );
 }
+
 
 export default PlantList;
