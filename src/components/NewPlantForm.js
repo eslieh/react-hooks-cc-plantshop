@@ -49,6 +49,7 @@ function NewPlantForm({ onAddPlant }) {
         <input
           type="text"
           name="name"
+          required
           placeholder="Plant name"
           value={plantName}
           onChange={(e) => setName(e.target.value)}
@@ -56,6 +57,7 @@ function NewPlantForm({ onAddPlant }) {
         <input
           type="text"
           name="image"
+          required
           placeholder="Image URL"
           value={image}
           onChange={(e) => setImage(e.target.value)}
@@ -63,6 +65,7 @@ function NewPlantForm({ onAddPlant }) {
         <input
           type="number"
           name="price"
+          required
           step="0.01"
           placeholder="Price"
           value={price}
