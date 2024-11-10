@@ -1,150 +1,150 @@
-# Phase 2 Code Challenge: Plantsy
+# Plant Store
 
-## Demo
+A plant store application built using **React** that allows users to browse, add, update, and delete plants. This application interacts with a backend API to persist data across sessions.
 
-Use this gif as an example of how the app should work.
+## Table of Contents
 
-![Demo GIF](https://curriculum-content.s3.amazonaws.com/phase-2/react-hooks-mock-code-challenge-plantshop/plantsy_demo.gif)
+- [Description](#description)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [File Structure](#file-structure)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Instructions
+---
 
-Welcome to Plantsy! You've been tasked with building out some features for the
-admin side of a plant store. The designers have put together the components and
-CSS. Now it's up to you to bring the features to life by adding stateful logic
-as well as persisting data to the backend via our API.
+## Description
 
-Your job will be to make our app work according to the user stories you will
-find the [Core Deliverables](#Core-Deliverables) section.
+The Plant Store application allows users to:
 
-## Setup
+- View a list of plants available in the store.
+- Add new plants with a name, price, and image.
+- Edit the price of existing plants.
+- Toggle the stock status (in-stock or out-of-stock).
+- Delete plants from the inventory.
 
-1. Run `npm install` in your terminal.
-2. Run `npm run server`. This will run your backend on port `6001`.
-3. In a new terminal, run `npm start`.
+The app is built using **React** and fetches data from a RESTful backend API hosted locally. All changes made by users (adding, updating, and deleting plants) are persisted in the backend.
 
-Make sure to open [http://localhost:6001/plants](http://localhost:6001/plants)
-in the browser to verify that your backend is working before you proceed!
+---
 
-## Endpoints
+## Features
 
-The base URL for your backend is: `http://localhost:6001`
+- **Browse Plants**: Display a list of plants with their names, prices, images, and stock status.
+- **Add Plants**: Users can add new plants to the store by providing a name, image URL, and price.
+- **Edit Plant Prices**: Users can update the price of a plant directly from the UI.
+- **Toggle Stock Status**: Users can toggle the availability of plants by switching between "In Stock" and "Out of Stock."
+- **Delete Plants**: Users can delete a plant from the inventory.
+- **Persistent Data**: All changes (add, update, delete) are reflected in the backend and persist across sessions.
+- **Search Functionality**: Users can search plants by name.
 
-## Core Deliverables
+---
 
-As a user:
+## Tech Stack
 
-1. When the app starts, I can see all plants.
-2. I can add a new plant to the page by submitting the form.
-3. I can mark a plant as "sold out".
-4. I can search for plants by their name and see a filtered list of plants.
+- **Frontend**: React, JSX, CSS
+- **Backend**: Node.js (Express) with a JSON database (or mock API server)
+- **State Management**: React's `useState` and `useEffect`
+- **HTTP Requests**: Fetch API
+- **UI Components**: Custom components built using functional components in React
 
-### Endpoints for Core Deliverables
+---
 
-#### GET /plants
+## Installation
 
-Example Response:
+### Prerequisites
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Aloe",
-    "image": "./images/aloe.jpg",
-    "price": 15.99
-  },
-  {
-    "id": 2,
-    "name": "ZZ Plant",
-    "image": "./images/zz-plant.jpg",
-    "price": 25.98
-  }
-]
-```
+- **Node.js** and **npm** installed on your system. You can check if they are installed by running the following commands:
+  ```bash
+  node -v
+  npm -v
+Steps to Run the Project
+Clone the repository:
 
-#### POST `/plants`
+bash
+git clone https://github.com/yourusername/plant-store.git
+Navigate to the project directory:
 
-Required Headers:
+bash
+cd plant-store
+Install the dependencies:
 
-```js
+bash
+npm install
+Start the project:
+
+bash
+npm start
+This will start the development server and the app should be available at http://localhost:3000 in your browser.
+
+Usage
+Once the app is running, you can:
+
+View available plants: The plant list will automatically load and display all plants.
+Add a new plant: Use the "Add Plant" form to provide a name, image URL, and price. After submitting, the plant will be added to the list.
+Update a plant's price: Click "Edit Price" to change the price of a plant. The change will be reflected both in the UI and in the backend.
+Delete a plant: Use the "Delete" button next to any plant to remove it from the inventory.
+Toggle stock status: Click on "In Stock" or "Out of Stock" to toggle the plant's availability status.
+API Endpoints
+The following API endpoints are used by the frontend:
+
+GET /plants
+Description: Fetches all plants in the store.
+Response: A JSON array of plants.
+POST /plants
+Description: Adds a new plant to the store.
+Request Body:
 {
-  "Content-Type": "application/json"
+  "name": "Plant Name",
+  "image": "Image URL",
+  "price": "Plant Price"
 }
-```
+PUT /plants/:id
+Description: Updates the price of a specific plant.
+Request Body
+yaml
+Copy code
 
-Request Object:
-
-```json
+---:
 {
-  "name": "string",
-  "image": "string",
-  "price": number
+  "price": "New Price"
 }
-```
+DELETE /plants/:id
+Description: Deletes a plant from the store.
+Response: No response body; returns HTTP status 200 on success.
+File Structure
+The project follows a modular file structure to keep things organized:
 
-Example Response:
+bash
+/plant-store
+│
+├── /public             # Public assets, including index.html and images
+│   └── index.html      # Main HTML file
+│
+├── /src
+│   ├── /components     # React components (PlantCard, PlantList, NewPlantForm, Search, etc.)
+│   ├── /hooks          # Custom hooks (optional)
+│   ├── /styles         # CSS files for styling
+│   ├── App.js          # Main app component
+│   ├── index.js        # Entry point for React
+│   └── serviceWorker.js # Optional: for offline caching
+│
+├── package.json        # Project metadata and dependencies
+└── README.md           # This file
+Contributing
+We welcome contributions! If you'd like to help improve this project, please follow these steps:
 
-```json
-{
-  "id": 1,
-  "name": "Aloe",
-  "image": "./images/aloe.jpg",
-  "price": 15.99
-}
-```
+Fork the repository.
+Create a new branch (git checkout -b feature-branch).
+Make your changes and commit them (git commit -am 'Add feature').
+Push to the branch (git push origin feature-branch).
+Create a pull request explaining your changes.
+License
+This project is licensed under the MIT License.
 
-## Advanced Deliverables
-
-These deliverables are not required to pass the code challenge, but if you have
-the extra time, or even after the code challenge, they are a great way to
-stretch your skills.
-
-You'll have to add additional elements for these features. Feel free to style
-them however you see fit!
-
-> Note: If you are going to attempt these advanced deliverables, please be sure
-> to have a working commit with all the Core Deliverables first!
-
-As a user:
-
-1. I can update the price of a plant and still see the updated price after
-   refreshing the page.
-2. I can delete a plant and it is still gone when I refresh the page.
-
-### Endpoints for Advanced Deliverables
-
-#### PATCH /plants/:id
-
-Required Headers:
-
-```js
-{
-  "Content-Type": "application/json"
-}
-```
-
-Request Object:
-
-```json
-{
-  "price": number
-}
-```
-
-Example Response:
-
-```json
-{
-  "id": 1,
-  "name": "Aloe",
-  "image": "./images/aloe.jpg",
-  "price": 16.99
-}
-```
-
-#### DELETE /plants/:id
-
-Example Response:
-
-```json
-{}
-```
+Additional Notes
+Error Boundaries: The application uses React's error boundaries to handle potential errors gracefully during rendering.
+State Management: We use React’s built-in useState and useEffect hooks to manage the state and side effects of the app.
+Search Feature: The search functionality filters the list of plants based on the user's input and displays matching results.
